@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
@@ -10,6 +10,30 @@ function App() {
   const [value, setValue] = useState("");
   const [partnerConcept, setPartnerConcept] = useState("");
   const [partnerValue, setPartnerValue] = useState("");
+
+  // Cargar datos desde localStorage
+  useEffect(() => {
+    const savedMyIncomes = JSON.parse(localStorage.getItem("myIncomes")) || [];
+    const savedMyExpenses =
+      JSON.parse(localStorage.getItem("myExpenses")) || [];
+    const savedPartnerIncomes =
+      JSON.parse(localStorage.getItem("partnerIncomes")) || [];
+    const savedPartnerExpenses =
+      JSON.parse(localStorage.getItem("partnerExpenses")) || [];
+
+    setMyIncomes(savedMyIncomes);
+    setMyExpenses(savedMyExpenses);
+    setPartnerIncomes(savedPartnerIncomes);
+    setPartnerExpenses(savedPartnerExpenses);
+  }, []);
+
+  // Guardar datos en localStorage
+  useEffect(() => {
+    localStorage.setItem("myIncomes", JSON.stringify(myIncomes));
+    localStorage.setItem("myExpenses", JSON.stringify(myExpenses));
+    localStorage.setItem("partnerIncomes", JSON.stringify(partnerIncomes));
+    localStorage.setItem("partnerExpenses", JSON.stringify(partnerExpenses));
+  }, [myIncomes, myExpenses, partnerIncomes, partnerExpenses]);
 
   // Agregar ingresos y gastos
   const handleAddIncome = () => {
@@ -65,6 +89,20 @@ function App() {
 
   const handleDeletePartnerExpense = (index) => {
     setPartnerExpenses(partnerExpenses.filter((_, i) => i !== index));
+  };
+
+  // Limpiar formularios con confirmación
+  const handleClearData = () => {
+    if (
+      window.confirm(
+        "¿Seguro que deseas eliminar toda la información de las tablas?"
+      )
+    ) {
+      setMyIncomes([]);
+      setMyExpenses([]);
+      setPartnerIncomes([]);
+      setPartnerExpenses([]);
+    }
   };
 
   // Calcular totales
@@ -234,18 +272,18 @@ function App() {
               className="input"
             />
             <button onClick={handleAddPartnerIncome} className="button income">
-              Agregar Ingreso
+              Agregar Ingreso Socio
             </button>
             <button
               onClick={handleAddPartnerExpense}
               className="button expense"
             >
-              Agregar Gasto
+              Agregar Gasto Socio
             </button>
           </div>
           <div className="table-row">
             <div className="table-column">
-              <h3>Ingresos</h3>
+              <h3>Ingresos Socio</h3>
               <table>
                 <thead>
                   <tr>
@@ -277,7 +315,7 @@ function App() {
                   ))}
                   <tr>
                     <td>
-                      <strong>Total Ingresos</strong>
+                      <strong>Total Ingresos Socio</strong>
                     </td>
                     <td>
                       <strong>
@@ -294,7 +332,7 @@ function App() {
               </table>
             </div>
             <div className="table-column">
-              <h3>Gastos</h3>
+              <h3>Gastos Socio</h3>
               <table>
                 <thead>
                   <tr>
@@ -326,7 +364,7 @@ function App() {
                   ))}
                   <tr>
                     <td>
-                      <strong>Total Gastos</strong>
+                      <strong>Total Gastos Socio</strong>
                     </td>
                     <td>
                       <strong>
@@ -378,6 +416,10 @@ function App() {
           </span>
         </p>
       </div>
+
+      <button className="button" onClick={handleClearData}>
+        Limpiar Formularios
+      </button>
     </div>
   );
 }

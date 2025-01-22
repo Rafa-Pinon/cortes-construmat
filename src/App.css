@@ -22,6 +22,7 @@ body {
   border-radius: 5px;
   padding: 20px;
   background: #f9f9f9;
+  box-sizing: border-box;
 }
 
 .table-row {
@@ -133,4 +134,84 @@ h3 {
   font-size: 28px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  .table-row {
+    flex-direction: column; /* Poner las columnas en fila en pantallas pequeñas */
+  }
+
+  .table-column {
+    width: 100%;
+  }
+
+  .table-section {
+    min-width: 100%;
+    padding: 15px;
+  }
+
+  .input, .button {
+    width: 100%; /* Asegurar que los inputs y botones ocupen todo el ancho disponible */
+    margin-bottom: 10px;
+  }
+
+  .results {
+    padding: 10px;
+  }
+
+  .results h2 {
+    font-size: 20px;
+  }
+
+  .results p {
+    font-size: 16px;
+  }
+
+  .results .highlight {
+    font-size: 20px;
+  }
+
+  .results .red-text {
+    font-size: 24px;
+  }
+}
+
+/* Media Queries para pantallas más grandes (PC) */
+@media screen and (min-width: 1024px) {
+  .container {
+    padding: 40px;
+  }
+
+  .table-container {
+    gap: 30px;
+  }
+
+  .table-section {
+    min-width: 45%; /* Dejar espacio para las columnas en pantallas grandes */
+  }
+
+  .input {
+    width: auto; /* Devolver el tamaño del input a su comportamiento por defecto */
+  }
+
+  .button {
+    width: auto; /* Ajustar el botón a su tamaño por defecto */
+  }
+
+  .results h2 {
+    font-size: 28px;
+  }
+
+  .results p {
+    font-size: 20px;
+  }
+
+  .results .highlight {
+    font-size: 26px;
+  }
+
+  .results .red-text {
+    font-size: 32px;
+  }
 }
