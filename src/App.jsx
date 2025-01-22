@@ -255,7 +255,7 @@ function App() {
 
         {/* Tabla para tu socio */}
         <div className="table-section">
-          <h2>Ingresos y Gastos de mi Socio</h2>
+          <h2>Ingresos y Gastos de mi Papa</h2>
           <div className="form">
             <input
               type="text"
@@ -272,18 +272,18 @@ function App() {
               className="input"
             />
             <button onClick={handleAddPartnerIncome} className="button income">
-              Agregar Ingreso Socio
+              Agregar Ingreso Papa
             </button>
             <button
               onClick={handleAddPartnerExpense}
               className="button expense"
             >
-              Agregar Gasto Socio
+              Agregar Gasto Papa
             </button>
           </div>
           <div className="table-row">
             <div className="table-column">
-              <h3>Ingresos Socio</h3>
+              <h3>Ingresos Papa</h3>
               <table>
                 <thead>
                   <tr>
@@ -315,7 +315,7 @@ function App() {
                   ))}
                   <tr>
                     <td>
-                      <strong>Total Ingresos Socio</strong>
+                      <strong>Total Ingresos Papa</strong>
                     </td>
                     <td>
                       <strong>
@@ -332,7 +332,7 @@ function App() {
               </table>
             </div>
             <div className="table-column">
-              <h3>Gastos Socio</h3>
+              <h3>Gastos Papa</h3>
               <table>
                 <thead>
                   <tr>
@@ -364,7 +364,7 @@ function App() {
                   ))}
                   <tr>
                     <td>
-                      <strong>Total Gastos Socio</strong>
+                      <strong>Total Gastos Papa</strong>
                     </td>
                     <td>
                       <strong>
@@ -388,7 +388,7 @@ function App() {
       <div className="results">
         <h2>Resultados de Pagos</h2>
         <p>
-          Tú le debes a tu socio:{" "}
+          Tú le debes a tu Papa:{" "}
           <span
             className={`highlight ${
               amountToGiveToPartner > 0 ? "red-text" : ""
@@ -402,7 +402,7 @@ function App() {
           </span>
         </p>
         <p>
-          Tu socio te debe:{" "}
+          Tu Papa te debe:{" "}
           <span
             className={`highlight ${
               amountToCollectFromPartner > 0 ? "red-text" : ""
